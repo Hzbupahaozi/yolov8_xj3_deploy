@@ -1,0 +1,2 @@
+# yolov8_xj3_deploy
+yolov8的训练以及在旭日x3派上的部署
