@@ -1,0 +1,5 @@
+train: E:/data/train.txt
+val: E:/data/val.txt
+
+nc: 5  # number of classes
+names: ['ok', 'like', 'stop', 'chs', 'rock']
