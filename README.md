@@ -63,11 +63,11 @@ pip install -r requirements.txt
 python setup.py install
 ```
 ## train
-旭日x3派开发板的亮点在于其BPU 5T的int8算力。
-BPU的高效源于其特别的网络结构————可变组卷积（VarGNet），具体可以参考<https://arxiv.org/abs/1907.05653>
-因此对原本的yolov8网络结构进行修改，即将yolov8.yaml修改为x3pi_model_config/yolov8-vargnetct.yaml
+旭日x3派开发板的亮点在于其BPU 5T的int8算力\
+BPU的高效源于其特别的网络结构————可变组卷积（VarGNet），具体可以参考<https://arxiv.org/abs/1907.05653>\
+因此对原本的yolov8网络结构进行修改，即将yolov8.yaml修改为x3pi_model_config/yolov8-vargnetct.yaml\
 准备好yolo格式的数据集后就可以开始训练了
 ```python
-yolo task=detect mode=train model=./x3pi_config/yolov8n-vargnetct.yaml data=./mydata.yaml batch=32 epochs=100 imgsz=640 workers=8 device=0
+yolo task=detect mode=train model=./x3pi_config/yolov8n-vargnetct.yaml data=./mydata.yaml batch=32 epochs=80 imgsz=640 workers=8 device=0
 ```
-![x3true_yolov8n_80](https://user-images.githubusercontent.com/84694458/235343890-b2e56e16-609e-4225-9577-da066d558b33.jpg)
+![x3true_yolov8n_80](https://user-images.githubusercontent.com/84694458/235343978-88fb6a4f-a916-4d31-9b95-d16d3a0d84fb.jpg)
