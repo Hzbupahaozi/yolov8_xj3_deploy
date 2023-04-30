@@ -307,6 +307,71 @@ Conv_210                                            BPU  id(0)     HzSQuantizedC
 2023-04-30 12:46:11,316 INFO Convert to runtime bin file successfully!
 2023-04-30 12:46:11,316 INFO End Model Convert
 ```
-我们可以看到所有算子都是在BPU上跑了，所以可以起到加速推理的作用，同时也说明对yolov8模型的修改是有效的！\
+我们可以看到所有算子都是在BPU上跑了，所以可以起到加速推理的作用，同时也说明对yolov8模型的修改是有效的！因为我尝试过使用最原本的yolov8n结构，结果还是有一部分不能在bpu上跑\
+模型的输出结果在model_output中，其中的yolov8_horizon.bin就是我们需要的模型
+## 最后一步 上板！
+首先我们可以测试以下地平线预装模型yolov5_672x672_nv12.bin，yolov5s_672x672_nv12.bin的效果
+```
+hrt_model_exec perf \
+  --model_file yolov5s_672x672_nv12.bin \
+  --model_name="" \
+  --core_id=0 \
+  --frame_count=500 \
+  --perf_time=0 \
+  --thread_num=1 \
+  --profile_path="."
 
+hrt_model_exec perf \
+  --model_file fcos_512x512_nv12.bin \
+  --model_name="" \
+  --core_id=0 \
+  --frame_count=500 \
+  --perf_time=0 \
+  --thread_num=1 \
+  --profile_path="."
+```
+结果如下：
+```
+Running condition:
+  Thread number is: 1
+  Frame count   is: 500
+  Program run time: 36346.591000 ms
+Perf result:
+  Frame totally latency is: 36325.519531 ms
+  Average    latency    is: 72.651039 ms
+  Frame      rate       is: 13.756448 FPS
+
+Running condition:
+  Thread number is: 1
+  Frame count   is: 500
+  Program run time: 36308.297000 ms
+Perf result:
+  Frame totally latency is: 36286.542969 ms
+  Average    latency    is: 72.573090 ms
+  Frame      rate       is: 13.770957 FPS
+```
+然后就是我们模型的效果
+```
+hrt_model_exec perf \
+  --model_file yolov8s-vargnetct-det.bin \
+  --model_name="" \
+  --core_id=0 \
+  --frame_count=500 \
+  --perf_time=0 \
+  --thread_num=1 \
+  --profile_path="."
+ ```
+ 日志如下：
+ ```
+Running condition:
+  Thread number is: 1
+  Frame count   is: 500
+  Program run time: 20303.004000 ms
+Perf result:
+  Frame totally latency is: 20181.697266 ms
+  Average    latency    is: 40.36.3396 ms
+  Frame      rate       is: 24.626898 FPS
+ ```
+强！
+最后就是调用usb摄像头进行实时检测，脚本
 
