@@ -1,4 +1,11 @@
 # yolov8在旭日x3派板子上的部署
+## 主要内容如下：
+1. 用修改后的yolov8训练自己的数据集
+2. Pytorch到ONNX模型转换
+3. ONNX到BIN转换
+4. 旭日x3派上的实时检测
+
+
 以下是官方对于yolov8的介绍和链接
 <div align="center">
   <p>
@@ -50,6 +57,17 @@ To request an Enterprise License please complete the form at [Ultralytics Licens
 其中yolov8n比yolov5s参数量少一倍的情况下，精度可以持平yolov5s，同时与yolov6和yolov7相比也是更胜一筹。
 ## get started
 ```sh
-
-
+git clone https://github.com/Hzbupahaozi/yolov8_xj3_deploy.git
+cd yolov8_xj3_deploy
+pip install -r requirements.txt
+python setup.py install
 ```
+## train
+旭日x3派开发板的亮点在于其BPU 5T的int8算力。
+BPU的高效源于其特别的网络结构————可变组卷积（VarGNet），具体可以参考<https://arxiv.org/abs/1907.05653>
+因此对原本的yolov8网络结构进行修改，即将yolov8.yaml修改为x3pi_model_config/yolov8-vargnetct.yaml
+准备好yolo格式的数据集后就可以开始训练了
+```python
+yolo task=detect mode=train model=./x3pi_config/yolov8n-vargnetct.yaml data=./mydata.yaml batch=32 epochs=100 imgsz=640 workers=8 device=0
+```
+![x3true_yolov8n_80](https://user-images.githubusercontent.com/84694458/235343890-b2e56e16-609e-4225-9577-da066d558b33.jpg)
