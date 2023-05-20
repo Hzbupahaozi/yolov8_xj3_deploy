@@ -387,14 +387,14 @@ Perf result:
 
 ### 前前后后耗时将近一个月，中间一段时间将近放弃部署直接在电脑上跑，这两天看了一些资料加班了一下最后总算是搞完了，最后感谢以下地平线论坛里的工作人员，还有最最感谢的就是三木大佬，本次参考[triple-Mu/yolov8](https://github.com/triple-Mu/yolov8/tree/triplemu/x3pi)
 
-后续再记录一下，实现了在本地的使用onnxruntime进行推理，其中包括
-1. 只导出backbone+neck的分别是自制数据集和coco数据集的onnx模型的推理
-2. 正常export后onnx模型的推理
-![vargnet_backbone+neck的onnx模型推理](https://github.com/Hzbupahaozi/yolov8_xj3_deploy/assets/84694458/b0604474-2430-4e2b-ad4f-747fe2183ec2)
-![origin_backbone+neck的onnx模型推理](https://github.com/Hzbupahaozi/yolov8_xj3_deploy/assets/84694458/938977cd-4aa7-4ed6-8106-3ad4a1b32d7a)
+后续再记录一下，实现了在本地的使用onnxruntime进行推理，在inference文件夹中，其中包括
+1. 只导出backbone+neck的分别是自制数据集和coco数据集的onnx模型的推理\
+2. 正常export后onnx模型的推理\
+![vargnet_backbone+neck的onnx模型推理](https://github.com/Hzbupahaozi/yolov8_xj3_deploy/assets/84694458/b0604474-2430-4e2b-ad4f-747fe2183ec2)\
+![origin_backbone+neck的onnx模型推理](https://github.com/Hzbupahaozi/yolov8_xj3_deploy/assets/84694458/938977cd-4aa7-4ed6-8106-3ad4a1b32d7a)\
 可以看到旭日x3派经过BPU部署后的性能和笔记本的cpu推理的性能差不多
 
-### 后续改进
+### To Do List
 1. python的多线程推理
 2. C++封装python
 3. C++推理
