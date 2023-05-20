@@ -1,5 +1,5 @@
 # 记得先修改为自己的路径
-# okdata里面最好是训练集中的照片，100张左右
+# data里面最好是训练集中的照片，100张左右
 # calib_640_f32是生成的校准数据集
 from pathlib import Path
 import cv2
@@ -7,7 +7,7 @@ import numpy as np
 import random
 
 
-path = Path('./okdata')
+path = Path('./data')
 save = Path('./calib_640_f32')
 h = 640
 w = 640
