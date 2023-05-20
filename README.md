@@ -394,6 +394,9 @@ Perf result:
 ![origin_backbone+neck的onnx模型推理](https://github.com/Hzbupahaozi/yolov8_xj3_deploy/assets/84694458/938977cd-4aa7-4ed6-8106-3ad4a1b32d7a)\
 可以看到旭日x3派经过BPU部署后的性能和笔记本的cpu推理的性能差不多
 
+### 地平线官方实现的检测算法的精度以及速度记录
+![image](https://github.com/Hzbupahaozi/yolov8_xj3_deploy/assets/84694458/dc018b40-c0d1-450b-8ba2-a9b590f83d39)
+
 ### To Do List
 1. python的多线程推理
 2. C++封装python
